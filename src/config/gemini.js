@@ -20,16 +20,23 @@ import {
     responseMimeType: "text/plain",
   };
   
-  async function run() {
+  async function run(prompt) {
     const chatSession = model.startChat({
       generationConfig,
-      history: [
-      ],
+      history: [],
     });
-  
-    const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
-    console.log(result.response.text());
+  try{
+    const result = await chatSession.sendMessage(prompt);
+    const response = result.response;
+    console.log(response.text());
     return response.text();
+
   }
+  catch (error) {
+    console.error("Error in generating response:", error);
+    return "Sorry, there was an error generating the response.";
+}
+}
+  
   
   export default run;

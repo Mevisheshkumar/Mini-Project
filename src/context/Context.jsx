@@ -10,11 +10,11 @@ const ContextPrvider = (props) => {
     const [prevPrompts,setPrevPrompts] = useState([]);
     const [showResult,setShowResult] = useState(false);
     const [loading,setLoading] = useState(false);
-    const [resultData,setResulData] = useState("");
+    const [resultData,setResultData] = useState("");
 
     const delayPara = (index,nextWord) => {
         setTimeout(function () {
-            setResulData(prev=>prev+nextWord)
+            setResultData(prev=>prev+nextWord)
         },75*index)
     }
 
@@ -25,39 +25,39 @@ const ContextPrvider = (props) => {
 
     const onSent = async (prompt) => {
 
-        setResulData("")
+        setResultData("")
         setLoading(true)
         setShowResult(true)
-        let responce ;
+        let response ;
         if (prompt != undefined) {
-            responce = await run(prompt);
-            setRecentPrompt(prompt)
+            response = await run(prompt);
+            setRecentPrompt(prompt);
         }
         else{
-            setPrevPrompts(prev=>[...prev,input])
-            setRecentPrompt(input)
-            responce = await run(input)
+            setPrevPrompts(prev=>[...prev,input]);
+            setRecentPrompt(input);
+            response = await run(input);
         }
 
         let responseArray = response.split("**");
-        let newResponce="" ;
+        let newResponse="" ;
         for (let i= 0; i < responseArray.length; i++) {
             if (i === 0 || i%2 !== 1) {
-                newResponce += responseArray[i];
+                newResponse += responseArray[i];
             }
             else{
-                newResponce += "<b>"+responseArray[i]+"<b>";
+                newResponse += "<b>"+responseArray[i]+"<b>";
             }
         }
-        let newResponce2 = newResponce.split("*").join("</br>")
-        let newResponceArray = newResponce2.split(" ");
-        for (let i = 0; i < newResponceArray.length; i++) {
-            const nextWord = newResponceArray[i] ;
+        let newResponse2 = newResponse.split("*").join("</br>")
+        let newResponseArray = newResponse2.split(" ");
+        for (let i = 0; i < newResponseArray.length; i++) {
+            const nextWord = newResponseArray[i] ;
             delayPara(i,nextWord+" ")
             
         }
-        setLoading(false)
-        setInput("")
+        setLoading(false);
+        setInput("");
         
     }
 
