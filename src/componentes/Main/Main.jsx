@@ -5,7 +5,24 @@ import { Context } from '../../context/Context'
 
 const Main = () => {
 
-    const {onSent,recentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
+    const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,setRecentPrompt} = useContext(Context)
+
+    
+    const handleInputChange = (event) => {
+        setInput(event.target.value);
+      };
+    
+      const handleEnterPress = (event) => {
+        if (event.key === 'Enter') {
+          onSent();
+        }
+      };
+
+      const handleCardClick = (promptText) => {
+          setInput(promptText);
+        //   onSent(); 
+  };
+    
 
     return (
         <div className='main'>
@@ -22,20 +39,20 @@ const Main = () => {
                     <p>How can I help you ?</p>
                     </div>
                 <div className="cards">
-                    <div className="card">
-                        <p>text1</p>
+                    <div className="card" onClick={() => handleCardClick('Create a 10-day itinerary for a hiking and camping trip in the Uttarakhand.')}>
+                        <p>Tips: Create a 10-day itinerary for a hiking and camping trip in the Uttarakhand.</p>
                         <img src={assets.compass_icon} alt="" />
                     </div>
-                    <div className="card">
-                        <p>text2</p>
+                    <div className="card" onClick={() => handleCardClick('Find innovative solutions to reduce plastic pollution in oceans and landfills.')}>
+                        <p>Tips: Find innovative solutions to reduce plastic pollution in oceans and landfills.</p>
                         <img src={assets.bulb_icon} alt="" />
                     </div>
-                    <div className="card">
-                        <p>text3</p>
+                    <div className="card" onClick={() => handleCardClick('Create a recipe for a quick and easy weeknight dinner.')}>
+                        <p>Tips: Create a recipe for a quick and easy weeknight dinner.</p>
                         <img src={assets.message_icon} alt="" />
                     </div>
-                    <div className="card">
-                        <p>text4</p>
+                    <div className="card" onClick={() => handleCardClick('What is the area of a rectangle with a length of 10 cm and a width of 5 cm?')}>
+                        <p>Tips: What is the area of a rectangle with a length of 10 cm and a width of 5 cm?</p>
                         <img src={assets.code_icon} alt="" />
                     </div>
                 </div>
@@ -65,7 +82,7 @@ const Main = () => {
                 
                     <div className="main-bottom">
                         <div className="search-box">
-                            <input onChange={(e)=>setInput(e.target.value)} value={input} type="text" placeholder="Enter prompt" />
+                            <input onChange={handleInputChange} onKeyDown={handleEnterPress} value={input} type="text" placeholder="Enter prompt" />
                             <div>
                                 <img src={assets.gallery_icon} alt="" />
                                 <img src={assets.mic_icon} alt="" />
@@ -73,7 +90,7 @@ const Main = () => {
                             </div>
                         </div>
                         <p className="bottom-info">
-                            text you want ?
+                            Genrative AI can make mistakes, So double-check it.
                         </p>
                     </div>
                 </div>

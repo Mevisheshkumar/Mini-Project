@@ -5,7 +5,7 @@ import {
     HarmBlockThreshold,
   } from "@google/generative-ai"
   
-  const apiKey = "AIzaSyCI85UZ_0kHlGAVCvBZ8co1WYt13OCGndc";
+  const apiKey = "AIzaSyA7IU22m6qnLM01UzdP61VccFAcH5qY-oc";
   const genAI = new GoogleGenerativeAI(apiKey);
   
   const model = genAI.getGenerativeModel({
@@ -25,6 +25,7 @@ import {
       generationConfig,
       history: [],
     });
+    
   try{
     const result = await chatSession.sendMessage(prompt);
     const response = result.response;
@@ -36,6 +37,7 @@ import {
     console.error("Error in generating response:", error);
     return "Sorry, there was an error generating the response.";
 }
+
 }
   
   

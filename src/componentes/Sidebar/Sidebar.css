@@ -21,13 +21,14 @@
     margin-top: 50px;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     padding: 10px 15px;
     background-color: #e6eaf1;
     border-radius: 50px;
     font-size: 14px;
     color: grey;
     cursor: pointer;
+    animation: fadeIn 2s;
 }
 
 .sidebar .recent {
