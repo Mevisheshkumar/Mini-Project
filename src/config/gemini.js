@@ -5,7 +5,7 @@ import {
     HarmBlockThreshold,
   } from "@google/generative-ai"
   
-  const apiKey = "AIzaSyA7IU22m6qnLM01UzdP61VccFAcH5qY-oc";
+  const apiKey = "AIzaSyCrhAJfV8_l_W-J8qQ5G7UTwHWTz5UGBIk";
   const genAI = new GoogleGenerativeAI(apiKey);
   
   const model = genAI.getGenerativeModel({
